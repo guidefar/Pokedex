@@ -26,6 +26,21 @@ function PokemonList() {
   const listaFiltrada = pokemons.filter((p) =>
     p.name.toLowerCase().includes(filtro.toLowerCase()))
 
+if(listaFiltrada.length === 0){
+    return (
+    <section>
+      <label htmlFor="busca">Buscar por nome: </label>
+      <input
+        id="busca"
+        type="search"
+        value={filtro}
+        onChange={(e) => setFiltro(e.target.value)}
+        placeholder="Ex.: char"
+      />   
+      <p>Nenhum pokemon encontrado!</p>
+    </section>
+    )
+  }
   return (
     <section>
       <label htmlFor="busca">Buscar por nome: </label>
@@ -44,6 +59,8 @@ function PokemonList() {
           type={pokemon.type}
           imageUrl={pokemon.imageUrl} />
       ))}
+      
+      <p>A quantidade de pokemons sendo visualizada é: {listaFiltrada.length}</p>
     </section>
   )
 }
